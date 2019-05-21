@@ -10,15 +10,15 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    class ContactCreationTests : TestBase
+    public class ContactCreationTests : TestBase
     {    
 
         [Test]
         public void ContactCreationTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
-            InitNewContactCreation();
+            app.Navigator.GoToHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));
+            app.Contact.InitNewContactCreation();
             ContactData contact = new ContactData("1");
             contact.Middlename = "2";
             contact.Lastname = "3";
@@ -39,10 +39,10 @@ namespace WebAddressbookTests
             contact.Address2 = "18";
             contact.Phone2 = "19";
             contact.Notes = "20";
-            FillContactForm(contact);
-            SubmitCreation();
-            GoToHomePage();
-            Logout();
+            app.Contact.FillContactForm(contact);
+            app.Contact.SubmitCreation();
+            app.Navigator.GoToHomePage();
+            app.Auth.Logout();
         }
     }
 }
