@@ -36,8 +36,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-
-
         public GroupHelper RemoveGroup(int p)
         {
             manager.Navigator.GoToGroupsPage();

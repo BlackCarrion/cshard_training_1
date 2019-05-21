@@ -12,7 +12,7 @@ namespace WebAddressbookTests
     public class ApplicationManager
     {
         protected IWebDriver driver;
-        protected string baseURL;
+        protected string baseURL;        
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
@@ -22,7 +22,8 @@ namespace WebAddressbookTests
         public ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/";
+            baseURL = "http://localhost/addressbook/";            
+
 
             loginHelper = new LoginHelper(this);
             navigator = new NavigationHelper(this, baseURL);

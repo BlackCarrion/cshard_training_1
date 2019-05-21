@@ -15,22 +15,31 @@ namespace WebAddressbookTests
         {
         }
 
-        public ContactHelper InitNewContactCreation()
+        internal ContactHelper RemoveContact(int p)
         {
-            driver.FindElement(By.LinkText("add new")).Click();
+            manager.Navigator.GoToHomePage();
+            SelectContact(p);
+            RemoveSubmit();
+            manager.Navigator.GoToHomePage();
             return this;
         }
-        public ContactHelper SubmitCreation()
+
+        public ContactHelper Modify(int p, ContactData newData)
         {
-            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            manager.Navigator.GoToHomePage();
+            SelectContact(p);
+            InitContactModificator();
+            FillContactForm(newData);
+            SubmitContactModification();
+            manager.Navigator.GoToHomePage();
             return this;
         }
 
         public ContactHelper FillContactForm(ContactData contact)
         {
+            driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);//1
-            driver.FindElement(By.Name("theform")).Click();
             driver.FindElement(By.Name("middlename")).Click();
             driver.FindElement(By.Name("middlename")).Clear();
             driver.FindElement(By.Name("middlename")).SendKeys(contact.Lastname);//2
@@ -75,19 +84,15 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("homepage")).SendKeys("15");//15
             driver.FindElement(By.Name("bday")).Click();
             new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText("1");
-            driver.FindElement(By.XPath("//option[@value='1']")).Click();
             driver.FindElement(By.Name("bmonth")).Click();
             new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText("January");
-            driver.FindElement(By.XPath("//option[@value='January']")).Click();
             driver.FindElement(By.Name("byear")).Click();
             driver.FindElement(By.Name("byear")).Clear();
             driver.FindElement(By.Name("byear")).SendKeys(contact.BYear);//16
             driver.FindElement(By.Name("aday")).Click();
             new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText("1");
-            driver.FindElement(By.XPath("(//option[@value='1'])[2]")).Click();
             driver.FindElement(By.Name("amonth")).Click();
             new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText("January");
-            driver.FindElement(By.XPath("(//option[@value='January'])[2]")).Click();
             driver.FindElement(By.Name("ayear")).Click();
             driver.FindElement(By.Name("ayear")).Clear();
             driver.FindElement(By.Name("ayear")).SendKeys(contact.AYear);//17
@@ -100,6 +105,40 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("notes")).Click();
             driver.FindElement(By.Name("notes")).Clear();
             driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);//20
+            return this;
+        }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("//input[@id='" + index + "']")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModificator()
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[2]")).Click();
+            return this;
+        }
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
+            return this;
+        }
+        public ContactHelper SubmitCreation()
+        {
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            return this;
+        }
+        public ContactHelper InitNewContactCreation()
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+            return this;
+        }
+        public ContactHelper RemoveSubmit()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
             return this;
         }
     }

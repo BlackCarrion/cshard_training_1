@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebAddressbookTests
+﻿namespace WebAddressbookTests
 {
     public class ContactData
     {
@@ -178,7 +172,7 @@ namespace WebAddressbookTests
         public string Notes
         {
             get { return notes; }
-            set { notes= value; }
+            set { notes = value; }
         }
     }
 }
