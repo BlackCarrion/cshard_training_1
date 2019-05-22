@@ -34,7 +34,7 @@ namespace WebAddressbookTests.tests
             newData.Phone2 = "191";
             newData.Notes = "201";
 
-            app.Contact.Modify(7, newData);
+            app.Contact.Modify(newData);
             app.Auth.Logout();
         }
     }
