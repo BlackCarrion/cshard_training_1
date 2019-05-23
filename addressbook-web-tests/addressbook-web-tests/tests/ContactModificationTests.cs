@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace WebAddressbookTests.tests
+namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : TestBase
+    public class ContactModificationTests : AuthTestBase
     {
         [Test]
         public void ContactModificationTest()
@@ -35,7 +35,6 @@ namespace WebAddressbookTests.tests
             newData.Notes = "201";
 
             app.Contact.Modify(newData);
-            app.Auth.Logout();
         }
     }
 }

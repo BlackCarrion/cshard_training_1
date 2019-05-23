@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {    
 
         [Test]
@@ -41,7 +41,6 @@ namespace WebAddressbookTests
                 .FillContactForm(contact)
                 .SubmitCreation();
             app.Navigator.GoToHomePage();
-            app.Auth.Logout();
         }
     }
 }
