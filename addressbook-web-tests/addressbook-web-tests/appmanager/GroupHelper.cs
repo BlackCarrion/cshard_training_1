@@ -28,21 +28,35 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
+            IsGroupExist();
             SelectGroup(p);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
             manager.Navigator.GoToGroupsPage();
+
             return this;
         }
 
         public GroupHelper RemoveGroup(int p)
         {
             manager.Navigator.GoToGroupsPage();
+            IsGroupExist();
             SelectGroup(p);
             RemoveSubmit();
             manager.Navigator.GoToGroupsPage();
             return this;
+        }
+
+        public void IsGroupExist()
+        {
+            if (!IsElementPresent(By.XPath("//input[@type='checkbox']")))
+            {
+                GroupData defaultData = new GroupData("autocreated name");
+                defaultData.Header = "autocreated header";
+                defaultData.Footer = "autocreated footer";
+                CreateGroup(defaultData);
+            }
         }
 
         public GroupHelper InitNewGroupCreation()

@@ -33,6 +33,46 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper CreateContact(ContactData contactData)
+        {
+            manager.Navigator.GoToHomePage();
+            InitNewContactCreation();
+            FillContactForm(contactData);
+            SubmitCreation();
+            manager.Navigator.GoToHomePage();
+            return this;
+        }
+
+        public ContactHelper IsContactExist()
+        {
+            if (! IsElementPresent(By.XPath("//img[@alt='Edit']")))
+            {
+                ContactData defaultData = new ContactData("autocreated 1");
+                defaultData.Middlename = "autocreated 2";
+                defaultData.Lastname = "autocreated 3";
+                defaultData.Nickname = "autocreated 4";
+                defaultData.Title = "autocreated 5";
+                defaultData.Company = "autocreated 6";
+                defaultData.Address = "autocreated 7";
+                defaultData.Home = "autocreated 8";
+                defaultData.Mobile = "autocreated 9";
+                defaultData.Work = "autocreated 10";
+                defaultData.Fax = "autocreated 11";
+                defaultData.Email = "autocreated 12";
+                defaultData.Email2 = "autocreated 13";
+                defaultData.Email3 = "autocreated 14";
+                defaultData.Homepage = "autocreated 15";
+                defaultData.BYear = "autocreated 16";
+                defaultData.AYear = "autocreated 17";
+                defaultData.Address2 = "autocreated 18";
+                defaultData.Phone2 = "autocreated 19";
+                defaultData.Notes = "autocreated 20";
+
+                CreateContact(defaultData);
+            }
+            return this;
+        }
+
         public ContactHelper FillContactForm(ContactData contact)
         {
             Type(By.Name("firstname"), contact.Firstname); //1

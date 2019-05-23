@@ -34,6 +34,7 @@ namespace WebAddressbookTests
             newData.Phone2 = "191";
             newData.Notes = "201";
 
+            app.Contact.IsContactExist();
             app.Contact.Modify(newData);
         }
     }

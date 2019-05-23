@@ -25,7 +25,7 @@ namespace WebAddressbookTests
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook/";            
+            baseURL = "http://localhost/addressbook/";
 
 
             loginHelper = new LoginHelper(this);
@@ -57,28 +57,10 @@ namespace WebAddressbookTests
             return app.Value;
         }
 
-        public IWebDriver Driver
-        {
-            get { return driver; }
-        }
-
-        public LoginHelper Auth
-        {
-            get { return loginHelper; }
-        }
-        public NavigationHelper Navigator
-        {
-            get { return navigator; }
-        }
-        public GroupHelper Groups
-        {
-            get { return groupHelper; }
-        }
-        public ContactHelper Contact
-        {
-            get { return contactHelper; }
-        }
-
-
+        public IWebDriver Driver             { get { return driver; } }
+        public LoginHelper Auth              { get { return loginHelper; } }
+        public NavigationHelper Navigator    { get { return navigator; } }
+        public GroupHelper Groups            { get { return groupHelper; } }
+        public ContactHelper Contact         { get { return contactHelper; } }
     }
 }

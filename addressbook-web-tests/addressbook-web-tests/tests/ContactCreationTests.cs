@@ -16,31 +16,28 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {          
-            ContactData contact = new ContactData("1");
-            contact.Middlename = "2";
-            contact.Lastname = "3";
-            contact.Nickname = "4";
-            contact.Title = "5";
-            contact.Company = "6";
-            contact.Address = "7";
-            contact.Home = "8";
-            contact.Mobile = "9";
-            contact.Work = "10";
-            contact.Fax = "11";
-            contact.Email = "12";
-            contact.Email2 = "13";
-            contact.Email3 = "14";
-            contact.Homepage = "15";
-            contact.BYear = "16";
-            contact.AYear = "17";
-            contact.Address2 = "18";
-            contact.Phone2 = "19";
-            contact.Notes = "20";
-            app.Contact
-                .InitNewContactCreation()
-                .FillContactForm(contact)
-                .SubmitCreation();
-            app.Navigator.GoToHomePage();
+            ContactData contactData = new ContactData("1");
+            contactData.Middlename = "2";
+            contactData.Lastname = "3";
+            contactData.Nickname = "4";
+            contactData.Title = "5";
+            contactData.Company = "6";
+            contactData.Address = "7";
+            contactData.Home = "8";
+            contactData.Mobile = "9";
+            contactData.Work = "10";
+            contactData.Fax = "11";
+            contactData.Email = "12";
+            contactData.Email2 = "13";
+            contactData.Email3 = "14";
+            contactData.Homepage = "15";
+            contactData.BYear = "16";
+            contactData.AYear = "17";
+            contactData.Address2 = "18";
+            contactData.Phone2 = "19";
+            contactData.Notes = "20";
+
+            app.Contact.CreateContact(contactData);
         }
     }
 }
