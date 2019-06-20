@@ -28,6 +28,18 @@ namespace WebAddressbookTests
                 driver.FindElement(locator).SendKeys(text);
             }
         }
+
+        public void Waiting(string element)
+        {
+            int attempt = 0;
+
+            while (driver.FindElements(By.Id("test")).Count == 0 && attempt < 60)
+            {
+                System.Threading.Thread.Sleep(1000);
+                    attempt++;
+            }
+        }
+
         public bool IsElementPresent(By by)
         {
             try

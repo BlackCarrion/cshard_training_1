@@ -34,8 +34,17 @@ namespace WebAddressbookTests
             newData.Phone2 = "191";
             newData.Notes = "201";
 
+            List<ContactData> oldContacts = app.Contact.GetContactList();
+
             app.Contact.IsContactExist();
             app.Contact.Modify(newData);
+
+            List<ContactData> newContacts = app.Contact.GetContactList();
+            oldContacts[0].Firstname = newData.Firstname;
+            oldContacts[0].Lastname = newData.Lastname;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

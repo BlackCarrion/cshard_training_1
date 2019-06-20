@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -37,7 +38,16 @@ namespace WebAddressbookTests
             contactData.Phone2 = "19";
             contactData.Notes = "20";
 
+
+            List<ContactData> oldContacts = app.Contact.GetContactList();
+
             app.Contact.CreateContact(contactData);
+
+            List<ContactData> newContacts = app.Contact.GetContactList();
+            oldContacts.Add(contactData);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
