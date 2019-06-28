@@ -34,6 +34,12 @@ namespace WebAddressbookTests
             this.firstname = firstname;
         }
 
+        public ContactData(string firstname, string lastname)
+        {
+            this.firstname = firstname;
+            this.lastname = lastname;
+        }
+
         public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
@@ -63,7 +69,14 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            return Firstname.CompareTo(other.Firstname);
+
+            if (Lastname.CompareTo(other.Lastname) == 0)
+            {
+                return Firstname.CompareTo(other.Firstname);
+            } else
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
         }
 
         public ContactData(string firstname, string middlename, string lastname, string nickname,

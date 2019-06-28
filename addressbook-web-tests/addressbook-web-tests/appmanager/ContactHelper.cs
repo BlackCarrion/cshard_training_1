@@ -22,9 +22,17 @@ namespace WebAddressbookTests
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr.entry"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text));
+                ICollection<IWebElement> contactSpecifications = element.FindElements(By.CssSelector("td"));
+                string[] cells = new string[contactSpecifications.Count];
+                foreach (IWebElement contactSpecification in contactSpecifications)
+                {
+                    for (int i = 0; i < contactSpecifications.Count; i++)
+                    {
+                        cells[i] = contactSpecification.Text;
+                    }
+                    contacts.Add(new ContactData(cells[1], cells[0]));
+                }
             }
-
             return contacts;
         }
 
