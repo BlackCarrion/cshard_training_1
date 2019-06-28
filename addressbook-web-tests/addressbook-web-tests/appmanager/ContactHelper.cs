@@ -33,6 +33,7 @@ namespace WebAddressbookTests
                     contacts.Add(new ContactData(cells[1], cells[0]));
                 }
             }
+
             return contacts;
         }
 
